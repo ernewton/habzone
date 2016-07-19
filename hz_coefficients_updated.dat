@@ -1,0 +1,18 @@
+#Table 3
+#Updated Coefficients to Calculate Habitable Stellar Fluxes, and Corresponding Habitable Zones, for Stars with 2600 <or= T_eff <or= 7200 K
+#
+# i = 1 --> Recent Venus
+# i = 2 --> Runaway Greenhouse 
+# i = 3 --> Moist Greenhouse (inner)
+# i = 4 --> Maximum Greenhouse (outer)
+# i = 5 --> Early Mars
+# First row: S_effSun(i) 
+# Second row: a(i)
+# Third row:  b(i)
+# Fourth row: c(i)
+# Fifth row:  d(i)
+1.7763      1.0385      1.0146      0.3507       0.3207		 
+1.4335e-4   1.2456e-4  8.1884e-5   5.9578e-5     5.4471e-5		 
+3.3954e-9   1.4612e-8   1.9394e-9   1.6707e-9    1.5275e-9		
+-7.6364e-12	 -7.6345e-12 -4.3618e-12 -3.0058e-12 -2.1709e-12		
+-1.1950e-15	 -1.7511e-15 -6.8260e-16 -5.1925e-16 -3.8282e-16	
