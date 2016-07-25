@@ -6,6 +6,7 @@ Created on Fri Jul 15 01:01:13 2016
 """
 
 import numpy as np
+import os
 import stellar
 
 def kep2dist(mstar, period, days=True):
@@ -34,7 +35,10 @@ def habzone(tstar, lstar, verbose=True, inner='moist', outer='maximum'):
     #maximum = 2
     
     # from paper erratum
-    hzfile = 'hz_coefficients_updated.dat'
+    try:
+        hzfile = os.path.join(os.path.abspath(os.path.dirname(__file__)))+'/hz_coefficients_updated.dat'
+    except:
+        hzfile='hz_coefficients_updated.dat'
     kop_coeff = np.genfromtxt(hzfile)
     runaway = 1
     moist = 2
@@ -84,14 +88,14 @@ def habzone(tstar, lstar, verbose=True, inner='moist', outer='maximum'):
 def habzone_m2p(mstar, verbose=False, standard='baraffe'):
     '''Calcualte habitable zone period from stellar mass'''
     tstar, lstar = stellar.from_mass(mstar, standard=standard)
+    seff, dist = habzone(tstar, lstar, verbose=verbose)
+    inner = kep2per(mstar, dist[0])
+    outer = kep2per(mstar, dist[1])
     if verbose:
         print "Mstar = ", mstar
         print "-> Teff = ", tstar
         print "-> Lum = ", lstar
-    print "Habitable zone insolation in Earth flux and distance in AU"
-    seff, dist = habzone(tstar, lstar, verbose=verbose)
-    inner = kep2per(mstar, dist[0])
-    outer = kep2per(mstar, dist[1])
-    
+        print "Habitable zone insolation in Earth flux and distance in AU"
+        print inner, outer
     # orbital period corresponding to the inner and outer edge of the habitable zone
     return inner, outer
